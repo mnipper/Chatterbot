@@ -13,7 +13,11 @@ bot_data = {
                   "I don't understand.",
                   "What?"
                 ],
-    :greeting => ["Hello everyone."],
+    :greeting => [
+                  "Hello everyone.", 
+                  "Howdy h8rs.",
+                  "[name] is in town."
+                 ],
     :farewell => ["l8r h8rs"],
     'hello'   => [
                   "Howdy.",
