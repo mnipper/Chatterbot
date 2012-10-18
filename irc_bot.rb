@@ -13,7 +13,11 @@ bot = Cinch::Bot.new do
   end
 
   on :message do |m|
-    m.reply chatterbot.response_to(m.message) if m.message =~ /^\$/ || rand < 0.06
+    if m.message =~ /^\$/
+      m.reply chatterbot.response_to(m.message[1..-1])
+    else
+      m.reply chatterbot.response_to(m.message) if rand < 0.06
+    end
   end
 
 end
