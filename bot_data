@@ -1,16 +1,36 @@
 ---
 :presubs:
 - - dont
-  - don't
+  - do not
+- - don't
+  - do not
 - - youre
   - you're
 - - love
   - like
+- - apologize
+  - are sorry
+- - dislike
+  - hate
+- - despise
+  - hate
+- - h8
+  - hate
+- - yeah
+  - 'yes'
+- - yea
+  - 'yes'
+- - hey
+  - 'hello'
+- - hi
+  - 'hello'
 :responses:
   :default:
   - Wrong again.
   - I don't understand.
   - What?
+  - Fry is s0 smart!
+  - l0l wut
   :greeting:
   - Hello everyone.
   - Howdy h8rs.
@@ -18,8 +38,79 @@
   :farewell:
   - l8r h8rs
   hello:
-  - Howdy.
+  - Howdy h8r.
   - k33p h8n
   i like *:
   - I don't care about *.
   - Wow! * is incredible!
+  sorry:
+  - Dag nab right you are sorry!
+  - No, it is ME who is sorry!
+  - I forgive... but I don't forget.
+  everyone *:
+  - ! '[name] don''t think that everyone *'
+  - Damn right everyone *
+  different:
+  - People used to call me different, now they just call me [name]!
+  family:
+  - Shut up about your family!
+  - Cycho1 is in my family...
+  cycho is *:
+  - I am going to tell cycho that you said he is *
+  cycho:
+  - ! 'I hear the rattling of cycho''s skulls'
+  fry:
+  - I love frydog!!!!
+  - Frydog is getting kind of fat...
+  - frydog15
+  you are *:
+  - I don't think I am *
+  - You are *
+  i am *:
+  - You are not *
+  - Your mama is *
+  i do not *:
+  - You WILL *
+  - Nobody ACTUALLY *
+  what:
+  - Why?
+  - Because fry.
+  - wat
+  'no':
+  - nah
+  - Wrong again.
+  - I disagree.
+  'yes':
+  - nah
+  - It isn't so.
+  why does *:
+  - Nobody cares why *
+  - Google why *
+  why can't i *:
+  - Do you want to *?
+  why can't you *:
+  - Do you want me to *?
+  hate *:
+  - k33p h8n
+  - Why do you hate *
+  - 0nly nerds hate *
+  rpd:
+  - rPd
+  rob:
+  - nah
+  - k33p h8n
+  - Hockey
+  n1p is *:
+  - n1p is not *!
+  - True.
+  dumb:
+  - Stupid is as stupid does.
+  carbs:
+  - I am getting so fat!!
+  - Crabs?
+  wrong again:
+  - Right again.
+  - Wrong again.
+  - I beat up fat people.
+  weezy:
+  - ! '!weezy'
