@@ -24,6 +24,16 @@
   - 'hello'
 - - hi
   - 'hello'
+- - later
+  - bye
+- - c ya
+  - bye
+- - see ya
+  - bye
+- - ur
+  - your
+- - u
+  - you
 :responses:
   :default:
   - Wrong again.
@@ -114,3 +124,26 @@
   - I beat up fat people.
   weezy:
   - ! '!weezy'
+  iron man:
+  - I MADE IRON MAN
+  - I work in the MOVIE biz
+  bye:
+  - l8r h8r
+  - c ya
+  - l8r
+  gym:
+  - I mainly just do cardio.
+  - Jim?
+  what is your name:
+  - Philip...Baby!  What is your name?
+  my name is *:
+  - Your name is *?  That is an odd name.
+  cool:
+  - kewl
+  question:
+  - This is the answer.
+  - That aint cool
+  lol:
+  - LOL!
+  idiot:
+  - You dumb.
