@@ -1,5 +1,4 @@
 class String
-
   def sentences
     gsub(/\n|\r/, ' ').split(/[\.\?;!]\s*/)
   end
@@ -7,11 +6,9 @@ class String
   def words
     scan(/\w[\w\'\-]*/)
   end
-
 end
 
 class WordPlay
-
   def self.switch_pronouns(text)
     text.gsub(/\b(I am|You are|I|You|Me|Your|My)\b/i) do |pronoun|
       case pronoun.downcase
@@ -30,7 +27,7 @@ class WordPlay
         when "my"
           "your"
       end
-    end.sub(/^me\b/i, 'i')
+    end.sub(/^me\b/i, 'i').sub(/i$/i, 'me')
   end
 
   def self.best_sentence(sentences, desired_words)
@@ -40,5 +37,4 @@ class WordPlay
 
     ranked_sentences.last
   end
-
 end
