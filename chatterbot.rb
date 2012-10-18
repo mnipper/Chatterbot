@@ -8,6 +8,7 @@ class ChatterBot
     @name = options[:name] || "PhilipBaby"
     begin
       @data = YAML.load(File.read(options[:data_file]))
+      @data[:responses][:learning] = []
     rescue
       raise "Can't load bot data"
     end
@@ -25,7 +26,7 @@ class ChatterBot
     prepared_input = preprocess(input).downcase
     sentence = best_sentence(prepared_input)
     responses = possible_responses(sentence)
-    responses.sample
+    responses.sample.gsub(/\[name\]/, @name)
   end
 
   private
@@ -39,7 +40,7 @@ class ChatterBot
   end
 
   def perform_substitutions(input)
-    @data[:presubs].each { |s| input.gsub!(s[0], s[1]) }
+    @data[:presubs].each { |s| input.gsub!(/\bs[0]\b/, s[1]) }
     input
   end
 
@@ -69,7 +70,11 @@ class ChatterBot
       end
     end
 
-    responses << @data[:responses][:default] if responses.empty?
+    if responses.empty?
+      responses << @data[:responses][:default]
+      #responses << @data[:responses][:learning][:statement]
+      #@data[:responses][:learning][:statement] << sentence
+    end
     responses.flatten
   end
 end
