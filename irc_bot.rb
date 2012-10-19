@@ -1,5 +1,5 @@
 require 'cinch'
-require './creds.rb'
+require './creds'
 require './chatterbot'
 
 chatterbot = ChatterBot.new(:data_file => 'bot_data')
