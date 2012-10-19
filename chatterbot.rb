@@ -31,7 +31,6 @@ class ChatterBot
     end
     @learner.give_response(sentence) if @learner.waiting
     responses = possible_responses(sentence)
-    p @learner.sentences
     if rand < 0.2 && !@learner.get_unknown_sentence.nil?
       @learner.get_unknown_sentence
     else
