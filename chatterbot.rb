@@ -1,14 +1,15 @@
 require 'yaml'
 require './wordplay'
+require './learner'
 
 class ChatterBot
   attr_reader :name
 
   def initialize(options)
     @name = options[:name] || "PhilipBaby"
+    @learner = Learner.new
     begin
       @data = YAML.load(File.read(options[:data_file]))
-      @data[:responses][:learning] = []
     rescue
       raise "Can't load bot data"
     end
@@ -25,8 +26,17 @@ class ChatterBot
   def response_to(input)
     prepared_input = preprocess(input).downcase
     sentence = best_sentence(prepared_input)
+    if dictionary_matches(sentence).empty? && @learner.get_response(sentence).empty? && !@learner.waiting
+      @learner.add_unknown_sentence(sentence)
+    end
+    @learner.give_response(sentence) if @learner.waiting
     responses = possible_responses(sentence)
-    responses.sample.gsub(/\[name\]/, @name)
+    p @learner.sentences
+    if rand < 0.2 && !@learner.get_unknown_sentence.nil?
+      @learner.get_unknown_sentence
+    else
+      responses.sample.gsub(/\[name\]/, @name)
+    end
   end
 
   private
@@ -52,12 +62,10 @@ class ChatterBot
     WordPlay.best_sentence(input.sentences, hot_words)
   end
 
-  def possible_responses(sentence)
+  def dictionary_matches(sentence)
     responses = []
-
     @data[:responses].keys.each do |pattern|
       next unless pattern.is_a?(String)
-
       if sentence.match('\b' + pattern.gsub(/\*/, '') + '\b')
         if pattern.include?('*')
           responses << @data[:responses][pattern].collect do |phrase|
@@ -69,12 +77,19 @@ class ChatterBot
         end
       end
     end
+    responses
+  end
 
-    if responses.empty?
-      responses << @data[:responses][:default]
-      #responses << @data[:responses][:learning][:statement]
-      #@data[:responses][:learning][:statement] << sentence
+  def possible_responses(sentence)
+    responses = dictionary_matches(sentence) || []
+    if responses.empty? 
+      if @learner.get_response(sentence).empty?
+        responses << @data[:responses][:default]
+      else
+        responses << @learner.get_response(sentence)
+      end
     end
+
     responses.flatten
   end
 end
