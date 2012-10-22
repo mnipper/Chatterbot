@@ -26,16 +26,10 @@ class ChatterBot
   def response_to(input)
     prepared_input = preprocess(input).downcase
     sentence = best_sentence(prepared_input)
-    if dictionary_matches(sentence).empty? && @learner.get_response(sentence).empty? && !@learner.waiting
-      @learner.add_unknown_sentence(sentence)
-    end
+    learn_sentence sentence
     @learner.give_response(sentence) if @learner.waiting
-    responses = possible_responses(sentence)
-    if rand < 0.2 && !@learner.get_unknown_sentence.nil?
-      @learner.get_unknown_sentence
-    else
-      responses.sample.gsub(/\[name\]/, @name)
-    end
+    response = possible_responses(sentence).sample.gsub(/\[name\]/, @name)
+    rand < 0.2 && !@learner.get_unknown_sentence.nil? ? @learner.get_unknown_sentence : response
   end
 
   private
@@ -57,7 +51,6 @@ class ChatterBot
     hot_words = @data[:responses].keys.select do |k|
       k.class == String && k =~ /^\w+$/
     end
-
     WordPlay.best_sentence(input.sentences, hot_words)
   end
 
@@ -88,7 +81,12 @@ class ChatterBot
         responses << @learner.get_response(sentence)
       end
     end
-
     responses.flatten
+  end
+
+  def learn_sentence(sentence)
+    if dictionary_matches(sentence).empty? && @learner.get_response(sentence).empty? && !@learner.waiting
+      @learner.add_unknown_sentence(sentence)
+    end
   end
 end
