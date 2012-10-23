@@ -1,2 +1,6 @@
 creds.rb
 Gemfile.lock
+bot_data
+learn_data
+hash_to_yaml.rb
+nohup.out
